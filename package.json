@@ -1,0 +1,29 @@
+{
+  "name": "data-report",
+  "private": true,
+  "version": "1.0.0",
+  "description": "데이터 수집-시각화-분석 수행평가 웹앱 (중학교 정보 · 데이터 · [9정02-02][9정02-03][9정02-04])",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node tests/util.test.mjs && node tests/state.test.mjs && node tests/select.test.mjs && node tests/header-merge.test.mjs && node tests/io.test.mjs && node tests/chart.test.mjs && node tests/report.test.mjs"
+  },
+  "keywords": [
+    "education",
+    "middle-school",
+    "informatics",
+    "data-analysis",
+    "performance-assessment"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^8.1.5"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}

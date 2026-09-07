@@ -1,0 +1,314 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   data-report 공통 스타일
+   교실 TV·전자칠판에서도 잘 보이도록 글자와 버튼을 크게 잡았다.
+   색상은 hub 메인페이지의 "데이터" 영역 색(#12b886, 청록색)을 기준으로 통일했다.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --color-primary: #12b886;
+  --color-primary-dark: #0a8f68;
+  --color-primary-light: #e6fcf5;
+  --color-accent: #4c8dff;
+  --color-danger: #e64980;
+  --color-bg: #f4f7f6;
+  --color-card: #ffffff;
+  --color-text: #1b2430;
+  --color-text-soft: #5b6b74;
+  --color-border: #d7e3e0;
+  --radius: 14px;
+  --shadow: 0 4px 16px rgba(20, 40, 35, 0.08);
+  --font-base: 19px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", sans-serif;
+  font-size: var(--font-base);
+  line-height: 1.6;
+}
+
+#app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+h1, h2, h3 { line-height: 1.35; margin: 0 0 12px; }
+h1 { font-size: 34px; }
+h2 { font-size: 26px; }
+h3 { font-size: 21px; }
+
+p { margin: 0 0 12px; }
+
+/* ── 진행 표시줄 ───────────────────────────────────────────────────────── */
+.progress-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.progress-step {
+  flex: 1;
+  text-align: center;
+  padding: 10px 4px;
+  border-radius: 10px;
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-soft);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: default;
+}
+.progress-step.is-done {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+  cursor: pointer;
+}
+.progress-step.is-current {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ── 카드 ─────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.step-title { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+.step-desc { color: var(--color-text-soft); margin-bottom: 20px; font-size: 18px; }
+
+/* ── 버튼 ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 12px 26px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease, opacity .15s ease;
+  font-family: inherit;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+/* "다음" 조건이 아직 안 채워졌을 때 — 진짜 disabled는 아니다(클릭하면 무엇이
+   빠졌는지 알려줘야 하므로 클릭은 계속 받는다). 눈으로만 흐리게 보이게 한다. */
+.btn.btn-pending { opacity: .55; }
+
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--color-primary-dark); }
+
+.btn-secondary { background: #fff; color: var(--color-primary-dark); border-color: var(--color-primary); }
+.btn-secondary:hover:not(:disabled) { background: var(--color-primary-light); }
+
+.btn-outline { background: #fff; color: var(--color-text-soft); border-color: var(--color-border); }
+.btn-outline:hover:not(:disabled) { border-color: var(--color-text-soft); }
+
+.btn-danger { background: #fff; color: var(--color-danger); border-color: var(--color-danger); }
+.btn-danger:hover:not(:disabled) { background: #fff0f5; }
+
+.btn-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.btn-row-end { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+
+/* ── 입력 요소 ─────────────────────────────────────────────────────────── */
+label.field-label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 18px; }
+
+textarea, input[type="text"], input[type="number"] {
+  width: 100%;
+  font-size: 18px;
+  font-family: inherit;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text);
+}
+textarea:focus, input:focus, select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+textarea { min-height: 100px; resize: vertical; }
+
+select {
+  font-size: 18px;
+  font-family: inherit;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text);
+}
+
+/* 예시/힌트 등 옅은 안내 상자 */
+.hint-box {
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  font-size: 17px;
+  color: var(--color-text);
+}
+.hint-toggle {
+  background: none;
+  border: none;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: underline;
+}
+
+.warn-box {
+  background: #fff4e6;
+  border: 1px solid #f7b955;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #7a4b00;
+  margin-top: 10px;
+}
+
+/* 선택형 pill(체크박스류) */
+.chip-group { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--color-border);
+  background: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  user-select: none;
+}
+.chip.is-selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* 탭 전환(파일 업로드 / 직접 입력) */
+.tab-row { display: flex; gap: 8px; margin-bottom: 18px; }
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px 10px 0 0;
+  border: 2px solid var(--color-border);
+  border-bottom: none;
+  background: #f0f3f2;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--color-text-soft);
+}
+.tab-btn.is-active { background: #fff; color: var(--color-primary-dark); border-color: var(--color-primary); }
+
+/* 성취기준 배지 */
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.badge {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ── 표(직접 입력 그리드 / 미리보기 공용) ──────────────────────────────── */
+.table-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 10px; }
+table.data-grid { border-collapse: collapse; width: 100%; min-width: 480px; }
+table.data-grid th, table.data-grid td {
+  border: 1px solid var(--color-border);
+  padding: 8px 10px;
+  font-size: 16px;
+  text-align: left;
+}
+table.data-grid th { background: #f0f3f2; }
+table.data-grid input {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  font-size: 16px;
+  width: 100%;
+}
+table.data-grid input:focus { background: var(--color-primary-light); outline: none; border-radius: 4px; }
+
+/* 열 이름 입력칸은 데이터 칸과 달리 "입력해야 하는 곳"임이 눈에 띄어야 한다 */
+table.data-grid input.colname-input {
+  border: 2px solid var(--color-border);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 700;
+}
+table.data-grid input.colname-input:focus {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+table.data-grid input.colname-input::placeholder { font-weight: 400; color: var(--color-text-soft); }
+
+.grid-toolbar { display: flex; gap: 10px; margin: 12px 0; flex-wrap: wrap; }
+
+/* 드래그 앤 드롭 업로드 영역 */
+.dropzone {
+  border: 3px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--color-text-soft);
+  cursor: pointer;
+  background: #fafcfb;
+}
+.dropzone.is-dragover { border-color: var(--color-primary); background: var(--color-primary-light); }
+
+/* 그래프 캔버스 영역 */
+.chart-wrap {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 16px 0;
+}
+.chart-wrap canvas { max-width: 100%; }
+
+/* 보고서(인쇄용 포함) */
+.report-section { margin-bottom: 22px; }
+.report-section h3 { color: var(--color-primary-dark); border-bottom: 2px solid var(--color-primary-light); padding-bottom: 6px; }
+.report-blank-line {
+  border-bottom: 1px solid var(--color-text-soft);
+  display: inline-block;
+  min-width: 160px;
+  margin: 0 4px;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; font-size: 14px; }
+  #app { max-width: none; padding: 0; }
+  .card { box-shadow: none; border: 1px solid #ccc; }
+}
+
+@media (max-width: 640px) {
+  #app { padding: 16px 12px 60px; }
+  .card { padding: 18px; }
+  h1 { font-size: 26px; }
+  .step-title { font-size: 22px; }
+}
