@@ -55,10 +55,26 @@
 - 실제 교실 사용은 아직 안 해 봤다. 수업 뒤 피드백으로 질문 문구·힌트를 다듬을 것.
 - 한 것
   - [x] `hub/data.js` 2단원 `activities` 에 항목 추가 (status: 'soon' — 배포 후 url 채우고 'ready'로)
-- 아직 안 한 것
-  - [ ] GitHub 저장소 만들고 Actions 배포 (`.github/workflows/deploy.yml` 없음, `binary-converter`의 것을 복사)
-  - [ ] `dist/` 빌드 결과 실제 브라우저 확인 (개발 서버로는 확인함, `npm run build`는 성공)
-  - [ ] 파일 업로드 경로를 실제 공공데이터 CSV(KOSIS 등)로도 한 번 확인 (지금은 표 직접 입력 경로만 수동 확인)
+### 배포 (2026-09-07)
+- [x] GitHub 저장소 `encosn/data-report` 생성, `main` 브랜치 푸시
+- [x] Actions 배포(`npm ci` → `npm test` → `npm run build` → Pages) 성공
+      → **https://encosn.github.io/data-report/**
+- [x] 배포된 사이트를 브라우저로 열어 콘솔 오류 0건, 자원 전부 200 확인
+      (이것으로 `dist/` 빌드 결과 실물 확인도 함께 끝났다)
+- [x] `hub/data.js` 의 `url` 채우고 `status: 'ready'` 로 변경 → hub 저장소에 푸시,
+      배포된 hub 단원 페이지에서 활동이 나오는 것까지 확인
+
+  ⚠️ 첫 배포에서 두 가지에 걸렸다 — ① `gh` 토큰에 `workflow` 권한이 없어
+  `.github/workflows/` 푸시가 거부됐다(`gh auth refresh -h github.com -s workflow` 로 해결).
+  ② 새 저장소라 워크플로의 `configure-pages`(`enablement:true`)가
+  "Resource not accessible by integration" 으로 실패했다 —
+  `gh api -X POST repos/encosn/data-report/pages -f build_type=workflow` 로 Pages 를 켠 뒤
+  `gh run rerun` 하니 통과했다. **다음에 새 앱을 배포할 때도 같은 순서로 하면 된다.**
+
+### 아직 안 한 것
+- [ ] 파일 업로드 경로를 실제 공공데이터 CSV(KOSIS 등)로도 한 번 확인
+      (지금은 표 직접 입력 경로만 수동 확인)
+- [ ] 실제 교실에서 써 보고 질문 문구·힌트 다듬기
 
 ---
 
